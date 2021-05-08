@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+$mainBackground : #fcf5f9;
+$mainBorderColor : #F3E8EE;
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Josefin Sans', cursive;
+}
+
+.pages-container{
+    padding-top: 4.5rem;
+    background-color: $mainBackground;
+}
+
+
+//removes lines from a tag on app
+a{
+    text-decoration: none;
+    color: inherit;
+}
