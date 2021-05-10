@@ -23,12 +23,12 @@ function Alert(props) {
 
 
 
-const ExperienceSnackbar = () => {
+const AuthSnackbar = () => {
     const dispatch = useDispatch()
 
-    const open = useSelector((state) => state.experiences.openSnackbar)
-    const severity = useSelector((state) => state.experiences.snackbarSeverity)
-    const snackbarText = useSelector((state) => state.experiences.snackbarText)
+    const open = useSelector((state) => state.auth.authSnackbar)
+    const severity = useSelector((state) => state.auth.authSnackbarSeverity)
+    const snackbarText = useSelector((state) => state.auth.authSnackbarText)
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -50,4 +50,4 @@ const ExperienceSnackbar = () => {
 
 
 
-export default ExperienceSnackbar
+export default AuthSnackbar

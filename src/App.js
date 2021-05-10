@@ -21,7 +21,9 @@ import { getAccount } from './store/actions/auth'
 import { getAllExperiences } from './store/actions/experiences'
 import EditProfile from './pages/edit_profile/EditProfile'
 import LogoLoader from './components/loaders/logo_loader/LogoLoader'
-import ExperienceSnackbar from './components/snackbars/success/SuccessSnackbar'
+import ExperienceSnackbar from './components/snackbars/ExperienceSnackbar'
+import ActionLoader from './components/loaders/action_loader/ActionLoader'
+import AuthSnackbar from './components/snackbars/AuthSnackbar'
 
 
 
@@ -85,8 +87,9 @@ function App() {
           </Switch>
 
         </div>
-
+        <ActionLoader />
         <ExperienceSnackbar />
+        <AuthSnackbar />
       </div>
     </Router>
 

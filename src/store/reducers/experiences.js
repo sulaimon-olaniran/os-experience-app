@@ -26,9 +26,8 @@ import {
 
 const initState = {
     fetchingExperiences : true,
-    creatingExperience : false,
-    deletingExperience : false,
     openSnackbar : false,
+    actionsLoader : false,
     snackbarText : "",
     snackbarSeverity : "",
     experiences : []
@@ -58,6 +57,7 @@ const experiencesReducer = (state = initState, action) => {
         case CREATING_EXPERIENCE:
             return {
                 ...state,
+                actionsLoader : true,
                 creatingExperience : true,
             }
 
@@ -65,7 +65,7 @@ const experiencesReducer = (state = initState, action) => {
         case CREATE_EXPERIENCE:
             return {
                 ...state,
-                creatingExperience : false,
+                actionsLoader : false,
                 openSnackbar : true,
                 snackbarText : "Your Experience was shared successfully",
                 snackbarSeverity : 'success'
@@ -74,7 +74,7 @@ const experiencesReducer = (state = initState, action) => {
         case CREATE_EXPERIENCE_ERROR :
             return {
                 ...state,
-                creatingExperience : false,
+                actionsLoader : false,
                 openSnackbar : true,
                 snackbarText : action.payload,
                 snackbarSeverity : 'error'
@@ -110,36 +110,18 @@ const experiencesReducer = (state = initState, action) => {
                 snackbarSeverity : 'error'
             }
 
-
-        // case DISLIKE_EXPERIENCE:
-        //     return {
-        //         ...state,
-        //         openSnackbar : true,
-        //         snackbarText : "Experience unliked successfully",
-        //         snackbarSeverity : 'success'
-        //     }
-
-
-        // case DISLIKE_EXPERIENCE_FAILED:
-        //     return {
-        //         ...state,
-        //         openSnackbar : true,
-        //         snackbarText : "Failed to unlike Experience",
-        //         snackbarSeverity : 'error'
-        //     }
-
         
         case DELETING_EXPERIENCE:
             return {
                 ...state,
-                deletingExperience : true
+                actionsLoader : true
             }
 
         
         case DELETE_EXPERIENCE:
             return {
                 ...state,
-                deletingExperience : false,
+                actionsLoader : false,
                 openSnackbar : true,
                 snackbarText : "Experience deleted successfully",
                 snackbarSeverity : 'success'

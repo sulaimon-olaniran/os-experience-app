@@ -13,7 +13,6 @@
 
     .navbar-contents-container{
         height: 100%;
-        //width: 720px;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -50,4 +49,14 @@
     }
 
 
+}
+
+
+@media(min-width : 600px) {
+    .navbar-container{
+        height: 4.5rem;
+        .navbar-contents-container{
+            width: 920px;
+        }
+    }
 }

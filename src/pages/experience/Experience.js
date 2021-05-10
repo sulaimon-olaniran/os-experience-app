@@ -74,55 +74,56 @@ const ExperiencePage = ({ match }) => {
     return (
         <div className="experience-page-container">
 
-
-            <div className='experience-creator-details-container'>
-                <div className="sub-creator-details-container">
-                    <Avatar src={creatorData?.profileImage} />
-                    <div className="texts-container">
-                        <p>{creatorData?.firstName} {creatorData?.lastName}</p>
-                        <p>{moment(experienceData?.createdAt).fromNow()}</p>
+            <div className="main-experience-contents-container">
+                <div className='experience-creator-details-container'>
+                    <div className="sub-creator-details-container">
+                        <Avatar src={creatorData?.profileImage} />
+                        <div className="texts-container">
+                            <p>{creatorData?.firstName} {creatorData?.lastName}</p>
+                            <p>{moment(experienceData?.createdAt).fromNow()}</p>
+                        </div>
                     </div>
+
+                    {
+                        user?._id === experienceData?.createdBy ?
+                            <DeleteIcon onClick={() => dispatch(deleteExperience(experienceData?._id))} />
+                            :
+                            user?.savedExperience.includes(experienceData?._id) ?
+                                <TurnedInIcon
+                                    onClick={() => dispatch(unSaveExperience(experienceData?._id))}
+                                />
+                                :
+                                <TurnedInNotIcon
+                                    onClick={() => dispatch(saveExperience(experienceData?._id))}
+                                />
+                    }
+
                 </div>
 
-                {
-                    user?._id === experienceData?.createdBy ?
-                        <DeleteIcon onClick={() => dispatch(deleteExperience(experienceData?._id))} />
-                        :
-                        user?.savedExperience.includes(experienceData?._id) ?
-                            <TurnedInIcon
-                                onClick={() => dispatch(unSaveExperience(experienceData?._id))}
-                            />
-                            :
-                            <TurnedInNotIcon
-                                onClick={() => dispatch(saveExperience(experienceData?._id))}
-                            />
-                }
 
+                <div className="experience-page-image-container">
+                    <img src={experienceData?.imageUrl} alt="Experience" />
+                </div>
+
+
+                <div className="experience-page-title-container">
+                    <h1>{experienceData?.title}</h1>
+                </div>
+
+
+                <div className="experience-page-summary-container">
+                    <p>{experienceData?.summary}</p>
+                </div>
+
+
+                <ShareExperience />
             </div>
 
-
-            <div className="experience-page-image-container">
-                <img src={experienceData?.imageUrl} alt="Experience" />
-            </div>
-
-
-            <div className="experience-page-title-container">
-                <h1>{experienceData?.title}</h1>
-            </div>
-
-
-            <div className="experience-page-summary-container">
-                <p>{experienceData?.summary}</p>
-            </div>
-
-
-            <ShareExperience />
-
-
-            <ExperienceComments 
-                experienceId={experienceData?._id} 
-                comments={experienceData?.comments} 
-                experience={experienceData} 
+            
+            <ExperienceComments
+                experienceId={experienceData?._id}
+                comments={experienceData?.comments}
+                experience={experienceData}
             />
 
         </div>

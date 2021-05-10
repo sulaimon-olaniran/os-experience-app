@@ -59,8 +59,9 @@ export const getAllExperiences = () => {
 
 
 
-export const createExperience = (data) => {
+export const createExperience = (data, resetForm) => {
     return (dispatch, getState) => {
+        
         dispatch({ type: CREATING_EXPERIENCE })
 
         const token = getState().auth.token
@@ -77,7 +78,7 @@ export const createExperience = (data) => {
                     type: CREATE_EXPERIENCE,
                     payload : res.data.message  
                 })
-
+                resetForm({})
             })
             .catch(error => {
                 dispatch({ 

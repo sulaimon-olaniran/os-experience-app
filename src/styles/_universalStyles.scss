@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
-$mainBackground : #fcf5f9;
+$mainBackground : white;
 $mainBorderColor : #F3E8EE;
 
 *{
@@ -16,6 +16,13 @@ body{
 .pages-container{
     padding-top: 4.5rem;
     background-color: $mainBackground;
+    width: 100%;
+}
+
+.App{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -23,4 +30,11 @@ body{
 a{
     text-decoration: none;
     color: inherit;
+}
+
+@media(min-width : 600px) {
+    .pages-container{
+        padding-top: 5rem;
+        width: 920px;
+    }
 }

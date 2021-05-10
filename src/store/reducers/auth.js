@@ -11,7 +11,8 @@ import {
     FETCHED_ACCOUNT_FAILED,
     UPDATE_ACCOUNT_FAIL,
     UPDATING_ACCOUNT,
-    UPDATED_ACCOUNT
+    UPDATED_ACCOUNT,
+    CLOSE_SNACKBAR
 } from '../../constants/actionTypes'
 
 
@@ -26,6 +27,9 @@ const initState = {
     user : null,
     signUpError : null,
     signInError : null,
+    authSnackbar : false,
+    authSnackbarText : '',
+    authSnackbarSeverity : ''
 }
 
 
@@ -70,14 +74,21 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 updatingAccount : false,
-                user : action.payload
+                user : action.payload,
+                authSnackbar : true,
+                authSnackbarText : "Updated profile successfully",
+                authSnackbarSeverity : 'success'
             }
 
         case UPDATE_ACCOUNT_FAIL:
             return {
                 ...state,
                 updateAccountError : action.payload,
-                updatingAccount : false
+                updatingAccount : false,
+                authSnackbar : true,
+                authSnackbarText : "Updated profile failed",
+                authSnackbarSeverity : 'error'
+
             }
         
         case SIGNING_IN:
@@ -105,7 +116,7 @@ const authReducer = (state = initState, action) => {
             }
             
         case SIGN_UP_ERROR:
-            
+            localStorage.removeItem('token')
             return {
                 ...state,
                 isAuth : false,
@@ -114,7 +125,7 @@ const authReducer = (state = initState, action) => {
             }
             
         case SIGN_IN_ERROR:
-            
+            localStorage.removeItem('token')
             return {
                 ...state,
                 isAuth : false,
@@ -128,6 +139,15 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 isAuth : false,
                 user : null
+            }
+            
+        case CLOSE_SNACKBAR:
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                authSnackbar : false,
+                authSnackbarSeverity : null,
+                authSnackbarText : 'warning'
             }
 
         default : return state

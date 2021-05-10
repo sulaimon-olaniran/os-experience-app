@@ -66,13 +66,13 @@
 
 
 
-
-
-
     .profile-component-experiences-container{
         width: 95%;
         min-height: 10rem;
         margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .profile-component-experiences-button-container{
             width: 100%;
@@ -83,6 +83,18 @@
 
             button{
                 width: 160px;
+            }
+        }
+    }
+}
+
+
+
+@media(min-width : 600px) {
+    .profile-component-container{
+        .profile-component-experiences-container{
+            .profile-component-experiences-button-container{
+                width: 50%;
             }
         }
     }

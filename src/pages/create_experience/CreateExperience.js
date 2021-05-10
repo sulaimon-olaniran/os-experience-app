@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
 import { Form, Field, withFormik, } from 'formik'
@@ -19,7 +19,7 @@ import { createExperience } from '../../store/actions/experiences'
 
 
 
-const MySelectComponent = ({ setFieldValue, errors, touched }) => {
+const MySelectComponent = ({ setFieldValue, errors, touched, values }) => {
    
 
     const handleChange = (e) => {
@@ -44,6 +44,7 @@ const MySelectComponent = ({ setFieldValue, errors, touched }) => {
                     name: 'category',
                     id: 'outlined-age-native-simple',
                 }}
+                value={values.category}
             >
                 <option aria-label="None" value="" />
                 <option value="Sports">Sports</option>
@@ -65,15 +66,15 @@ const MySelectComponent = ({ setFieldValue, errors, touched }) => {
 
 
 
-const CreateExperiencePage = ({ setFieldValue, touched, errors }) => {
-     const [fileName, setFileName] = useState("")
+const CreateExperiencePage = ({ setFieldValue, touched, errors, values }) => {
     
     //console.log(errors)
     
     const handleFileBaseDone = (file) =>{
-        const fName = file.name.substr(0, 20)
-        setFileName(fName)
-        setFieldValue(setFieldValue("imageUrl", file.base64))
+        const imageName = file.name.substr(0, 20)
+        //setFileName(fName)
+        setFieldValue("imageName", imageName)
+        setFieldValue("imageUrl", file.base64)
     }
 
     
@@ -94,6 +95,7 @@ const CreateExperiencePage = ({ setFieldValue, touched, errors }) => {
                         setFieldValue={setFieldValue}
                         touched={touched}
                         errors={errors}
+                        values={values}
                     />
 
 
@@ -137,7 +139,7 @@ const CreateExperiencePage = ({ setFieldValue, touched, errors }) => {
                             </div>
 
                             <div className="file-name-container">
-                               <p>{fileName ? fileName  : "No Image Selected"}</p> 
+                               <p>{values.imageName ? values.imageName  : "No Image Selected"}</p> 
                             </div>
 
                         </div>
@@ -173,17 +175,17 @@ const FormikCreateExperiencePage = withFormik({
             "summary": "",
             "createdBy": user?._id,
             "imageUrl": "",
+            "imageName" : "",
         }
     },
 
     validationSchema: CreateExperienceValidationSchema,
 
-    handleSubmit(values, { props, setStatus, setSubmitting }) {
+    handleSubmit(values, { props, setStatus, setSubmitting, resetForm }) {
         //const { category, title, summary, imageUrl } = values
         const { createExperience } = props
 
-        
-        createExperience(values)
+        createExperience(values, resetForm)
         //console.log(values)
 
     }
@@ -199,7 +201,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        createExperience : (data) => dispatch(createExperience(data)),
+        createExperience : (data, resetForm) => dispatch(createExperience(data, resetForm)),
     }
 }
 

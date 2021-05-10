@@ -18,3 +18,12 @@
         }
     }
 }
+
+
+@media(min-width : 600px) {
+    .saved-experience-container{
+        .each-saved-experience-image-container{
+            height: 15rem;
+        }
+    }
+}

@@ -6,3 +6,11 @@
     align-items: center;
     background-color: $mainBackground;
 }
+
+
+@media(min-width : 900px) {
+    .signedin-home-component-container{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
