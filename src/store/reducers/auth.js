@@ -121,7 +121,8 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 isAuth : false,
                 signUpError : action.payload,
-                signingUp : false
+                signingUp : false,
+                token: null,
             }
             
         case SIGN_IN_ERROR:
@@ -131,14 +132,16 @@ const authReducer = (state = initState, action) => {
                 isAuth : false,
                 signInError : action.payload,
                 signingIn : false,
+                token: null,
             }
             
         case LOGGED_OUT:
             localStorage.removeItem('token')
             return {
                 ...state,
+                user : null,
                 isAuth : false,
-                user : null
+                token: null,
             }
             
         case CLOSE_SNACKBAR:
