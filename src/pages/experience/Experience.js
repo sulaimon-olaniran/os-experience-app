@@ -116,7 +116,7 @@ const ExperiencePage = ({ match }) => {
                 </div>
 
 
-                <ShareExperience />
+                <ShareExperience experienceId={experienceData?._id} />
             </div>
 
             

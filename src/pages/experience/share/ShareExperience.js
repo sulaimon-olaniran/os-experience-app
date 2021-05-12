@@ -19,10 +19,10 @@ import {
 
 
 
-const ShareExperience = () => {
+const ShareExperience = ({ experienceId }) => {
 
     const iconSize = 30
-    const sharedLink = ''
+    const sharedLink = `https://os-experience.netlify.app/experience/${experienceId}`
     
     return(
         <div className="experience-page-share-experience-container">
