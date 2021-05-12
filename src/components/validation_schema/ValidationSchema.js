@@ -46,6 +46,9 @@ export const SignInValidationSchema = yup.object().shape({
 
 
 
+
+
+
 export const CreateExperienceValidationSchema = yup.object().shape({
     category: yup.string()
     .required('Select a category'),

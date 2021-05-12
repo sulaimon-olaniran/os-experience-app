@@ -1,4 +1,4 @@
-.signedin-home-component-container{
+.home-page-container{
     width: 100%;
     min-height: 90vh;
     display: flex;
@@ -9,7 +9,7 @@
 
 
 @media(min-width : 900px) {
-    .signedin-home-component-container{
+    .home-page-container{
         flex-direction: row;
         flex-wrap: wrap;
     }

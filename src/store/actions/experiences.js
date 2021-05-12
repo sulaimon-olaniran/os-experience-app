@@ -261,7 +261,7 @@ export const unLikeExperience = (id) => {
 
 
 
-export const commentOnExperience = (id, comment) => {
+export const commentOnExperience = (id, comment, clear) => {
     return (dispatch, getState) => {
 
         const token = getState().auth.token
@@ -274,7 +274,7 @@ export const commentOnExperience = (id, comment) => {
 
         axios.patch(`${baseUrl}/${id}/comment`, comment, config)
             .then(res => {
-                console.log(res)
+                clear()
                 dispatch({ 
                     type: COMMENT_EXPERIENCE,
                     payload : res.data.message 

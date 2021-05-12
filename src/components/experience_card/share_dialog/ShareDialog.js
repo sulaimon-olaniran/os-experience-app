@@ -25,9 +25,9 @@ import {
 
 
 
-const ShareDialog = ({ open, handleClose }) => {
+const ShareDialog = ({ open, handleClose, experienceId }) => {
     const iconSize = 40
-    const sharedLink = 'https://github.com/sulaimon-olaniran/instagram-web-clone/blob/main/src/components/feed/each_feed/share/SharePost.js'
+    const sharedLink = `https://os-experience.netlify.app/experience/${experienceId}`
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
             <div className="experience-share-dialog-container">

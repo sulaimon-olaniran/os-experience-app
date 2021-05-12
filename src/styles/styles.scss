@@ -1,13 +1,11 @@
 @import './universalStyles';
 @import '../components/navbar/Navbar';
-@import '../components/home/signedin/SignedinHome';
-@import '../components/home/signedout/SignedoutHome';
 @import '../components/experience_card/ExperienceCard';
 @import '../components/profile/ProfileComponent';
 @import '../components/skeletons/experience_card/ExpCardSkeleton';
 @import '../components/skeletons/comment/CommentSkeleton';
-//@import '../components/auth/AuthForm';
 @import '../pages/create_experience/CreateExperience';
 @import '../pages/experience/Experience';
 @import '../pages/auth/auth';
 @import '../pages/edit_profile/EditProfile';
+@import '../pages/home/HomePage';

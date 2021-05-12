@@ -99,7 +99,7 @@ const ExperienceCard = ({ experience }) => {
             <ShareDialog
                 open={shareDialog}
                 handleClose={closeShareDialog}
-                id={experience._id}
+                experienceId={experience._id}
             />
 
             <div className="experience-card-top-section-container">

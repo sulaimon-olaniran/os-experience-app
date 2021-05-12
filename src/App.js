@@ -44,20 +44,20 @@ function App() {
 
     const channel = pusher.subscribe('experience')
 
-    channel.bind('profile-updated', function (data) {
+    channel.bind('profile', function (data) {
       dispatch(getAccount())
       //console.log(data)
     })
 
-    channel.bind('experience-created', function (data) {
+    channel.bind('experience', function (data) {
       dispatch(getAllExperiences())
       //console.log(data)
     })
 
 
     return () => {
-      channel.unbind('profile-updated')
-      channel.unbind('experience-created')
+      channel.unbind('profile')
+      channel.unbind('experience')
     }
 
 

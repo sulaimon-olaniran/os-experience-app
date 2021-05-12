@@ -67,7 +67,7 @@ const experiencesReducer = (state = initState, action) => {
                 ...state,
                 actionsLoader : false,
                 openSnackbar : true,
-                snackbarText : "Your Experience was shared successfully",
+                snackbarText : "Experience shared successfully",
                 snackbarSeverity : 'success'
             }
 

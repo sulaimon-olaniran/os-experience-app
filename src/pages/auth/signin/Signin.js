@@ -60,7 +60,7 @@ const SigninPage = ({ touched, errors, serverError }) => {
                     Sign In
                 </Field >
 
-                {serverError && <small className="auth-error-text">{serverError}</small>}
+                {/* {serverError && <small className="auth-error-text">{serverError}</small>} */}
                 {signingIn && <BarLoader color="#0B7C62" />}
 
             </Form>

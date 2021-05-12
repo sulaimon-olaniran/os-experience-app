@@ -1,11 +1,22 @@
 
-//for production
-export const experiencesUrl = 'https://os-experience-app.herokuapp.com/experiences'
-export const usersUrl = 'https://os-experience-app.herokuapp.com/users'
+
+let usersApi = ''
+let experiencesApi = ''
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+
+    experiencesApi = 'http://localhost:5000/experiences'
+    usersApi = 'http://localhost:5000/users'
+   
+
+} else {
+
+    usersApi = process.env.REACT_APP_EXPERIENCE_API
+    experiencesApi = process.env.REACT_APP_USERS_API
+
+}
 
 
 
-// for development
-
-// export const experiencesUrl = 'http://localhost:5000/experiences'
-// export const usersUrl = 'http://localhost:5000/users'
+export const experiencesUrl = experiencesApi
+export const usersUrl = usersApi

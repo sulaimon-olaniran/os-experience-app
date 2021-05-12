@@ -27,6 +27,10 @@ const ExperienceComments = ({ experienceId, comments, experience }) => {
         setCommentText(e.target.value)
     }
 
+    const clearCommentText = () => {
+        setCommentText("")
+    }
+
 
     const handleSubmitComment = (e) => {
         e.preventDefault()
@@ -38,7 +42,7 @@ const ExperienceComments = ({ experienceId, comments, experience }) => {
         }
 
         //console.log(experienceId)
-        dispatch(commentOnExperience(experienceId, commentData))
+        dispatch(commentOnExperience(experienceId, commentData, clearCommentText))
     }
 
     return (
@@ -59,7 +63,7 @@ const ExperienceComments = ({ experienceId, comments, experience }) => {
                             :
 
                             <UnLikedIcon
-                                action={() => dispatch(likeExperience(experience._id))}
+                                action={() => dispatch(likeExperience("experience._id"))}
                                 width='24px'
                                 height='24px'
                             />

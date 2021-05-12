@@ -22,16 +22,6 @@ import { signUpUser } from '../../../store/actions/auth'
 const SignupPage = ({ touched, errors, serverError }) => {
 
 
-    // const handleOnGoogleSucces = (res) => {
-    //     console.log(res)
-
-    // }
-
-
-    // const handleOnGoogleFailure = () => {
-    //     console.log("google log in failed")
-    // }
-
     const isAuth = useSelector((state) => state.auth.isAuth)
     const signingUp = useSelector((state) => state.auth.signingUp)
 
@@ -100,25 +90,8 @@ const SignupPage = ({ touched, errors, serverError }) => {
                     Sign Up
                 </Field >
 
-                {/* <GoogleLogin
-                    clientId={googleClient}
-                    render={renderProps => (
-                        <Button
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                            style={{ backgroundColor: "blue", color: "white", width: "250px" }}
-                        >
-                            Sign In with Google
-                        </Button>
-                    )}
 
-                    onSuccess={handleOnGoogleSucces}
-                    onFailure={handleOnGoogleFailure}
-                    cookiePolicy="single_host_origin"
-
-                /> */}
-
-                {serverError !== null && <small className="auth-error-text">{serverError}</small>}
+                {/* {serverError !== null && <small className="auth-error-text">{serverError}</small>} */}
                 {signingUp && <BarLoader color="#0B7C62" />}
 
 

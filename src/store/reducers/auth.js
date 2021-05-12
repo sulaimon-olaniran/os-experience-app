@@ -86,7 +86,7 @@ const authReducer = (state = initState, action) => {
                 updateAccountError : action.payload,
                 updatingAccount : false,
                 authSnackbar : true,
-                authSnackbarText : "Updated profile failed",
+                authSnackbarText : "Profile update failed",
                 authSnackbarSeverity : 'error'
 
             }
@@ -112,7 +112,10 @@ const authReducer = (state = initState, action) => {
                 isAuth : true,
                 ...action.payload,
                 signingUp : false,
-                signingIn : false
+                signingIn : false,
+                authSnackbar : true,
+                authSnackbarText : "Welcome to Experience",
+                authSnackbarSeverity : 'success'
             }
             
         case SIGN_UP_ERROR:
@@ -120,9 +123,12 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 isAuth : false,
-                signUpError : action.payload,
+                //signUpError : action.payload,
                 signingUp : false,
                 token: null,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'error'
             }
             
         case SIGN_IN_ERROR:
@@ -130,9 +136,12 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 isAuth : false,
-                signInError : action.payload,
+                //signInError : action.payload,
                 signingIn : false,
                 token: null,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'error'
             }
             
         case LOGGED_OUT:
@@ -145,12 +154,11 @@ const authReducer = (state = initState, action) => {
             }
             
         case CLOSE_SNACKBAR:
-            localStorage.removeItem('token')
             return {
                 ...state,
                 authSnackbar : false,
-                authSnackbarSeverity : null,
-                authSnackbarText : 'warning'
+                authSnackbarSeverity : '',
+                authSnackbarText : ''
             }
 
         default : return state
