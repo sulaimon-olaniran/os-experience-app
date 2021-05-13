@@ -108,6 +108,7 @@ const ExperiencePage = ({ match }) => {
 
                 <div className="experience-page-title-container">
                     <h1>{experienceData?.title}</h1>
+                    <p>( {experienceData?.category} )</p>
                 </div>
 
 

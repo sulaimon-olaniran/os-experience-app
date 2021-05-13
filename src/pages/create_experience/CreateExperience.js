@@ -51,10 +51,14 @@ const MySelectComponent = ({ setFieldValue, errors, touched, values }) => {
                 <option value="Adventure">Adventure</option>
                 <option value="Work">Work</option>
                 <option value="Food" >Food</option>
-                <option value="Travels">Travels</option>
-                <option value="Vacations">Vacation</option>
+                <option value="Travels">Nature</option>
+                <option value="Vacation">Vacation</option>
                 <option value="Honeymoon">Honeymoon</option>
-                <option value="Honeymoon">Others</option>
+                <option value="Travels">Travels</option>
+                <option value="Emotional">Emotional</option>
+                <option value="Religious">Religious</option>
+                <option value="Educational">Educational</option>
+                <option value="Others">Others</option>
             </Select>
 
             {touched.category && errors.category && <small>{errors.category}</small> }
@@ -181,7 +185,7 @@ const FormikCreateExperiencePage = withFormik({
 
     validationSchema: CreateExperienceValidationSchema,
 
-    handleSubmit(values, { props, setStatus, setSubmitting, resetForm }) {
+    handleSubmit(values, { props, resetForm }) {
         //const { category, title, summary, imageUrl } = values
         const { createExperience } = props
 
