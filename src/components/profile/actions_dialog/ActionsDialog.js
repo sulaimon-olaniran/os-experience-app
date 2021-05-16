@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Dialog from '@material-ui/core/Dialog'
 import { Button } from '@material-ui/core'
 
 
 
 
-import { logoutUser } from '../../../store/actions/auth'
+import { logoutUser, deleteAccount } from '../../../store/actions/auth'
 
 
 
@@ -14,31 +15,38 @@ import { logoutUser } from '../../../store/actions/auth'
 
 
 
-const ProfileActionsDialog = ({ open, handleClose, id }) => {
+const ProfileActionsDialog = ({ open, handleClose, history }) => {
 
 
     const dispatch = useDispatch()
+
+    const handleLogoutUser = () => {
+        dispatch(logoutUser(history))
+        handleClose()
+    }
+
+    const handleDeleteAccount = () => {
+        dispatch(deleteAccount(history))
+        handleClose()
+    }
 
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
             <div className="profile-actions-dialog-container">
 
                 <div className="profile-actions-dialog-button-container">
-                    <Button>
-                        Change Password
-                    </Button>
-                </div>
-
-                <div className="profile-actions-dialog-button-container">
                     <Button
-                        onClick={() => dispatch(logoutUser())}
+                        onClick={handleLogoutUser}
                     >
                         Log Out
                     </Button>
                 </div>
 
                 <div className="profile-actions-dialog-button-container" >
-                    <Button>
+                    <Button
+                        onClick={handleDeleteAccount}
+                        color="secondary"
+                    >
                         Delete Account 
                     </Button>
                 </div>
@@ -50,4 +58,4 @@ const ProfileActionsDialog = ({ open, handleClose, id }) => {
 
 
 
-export default ProfileActionsDialog
+export default withRouter(ProfileActionsDialog)

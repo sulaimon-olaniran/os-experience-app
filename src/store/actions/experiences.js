@@ -5,8 +5,9 @@ import { experiencesUrl } from '../../api'
 
 
 import {
-    FETCHING_EXPERIENCES,
+    //FETCHING_EXPERIENCES,
     FETCH_EXPERIENCES,
+    FETCH_EXPERIENCE_FAILED,
     CREATING_EXPERIENCE,
     CREATE_EXPERIENCE,
     DISLIKE_EXPERIENCE,
@@ -40,7 +41,8 @@ const baseUrl = experiencesUrl
 
 export const getAllExperiences = () => {
     return (dispatch, getState) => {
-        dispatch({ type: FETCHING_EXPERIENCES })
+        //dispatch({ type: FETCHING_EXPERIENCES })
+        console.log("fetching experiences")
 
         axios.get(baseUrl)
             .then(res => {
@@ -50,8 +52,12 @@ export const getAllExperiences = () => {
                     payload: res.data
                 })
             })
-            .catch(err => {
-                console.log(err)
+            .catch(error => {
+                console.log(error)
+                dispatch({
+                    type : FETCH_EXPERIENCE_FAILED,
+                    payload : "Failed to load Experiences"
+                })
             })
     }
 

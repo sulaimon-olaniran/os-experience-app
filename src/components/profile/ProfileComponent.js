@@ -41,6 +41,7 @@ const ProfileComponent = ({ user, from }) => {
     const [showSharedExp, setShowSharedExp] = useState(true)
 
 
+
     const styles = useStyles()
 
     const experiences = useSelector((state) => state.experiences.experiences)
@@ -91,9 +92,9 @@ const ProfileComponent = ({ user, from }) => {
                 <div className='first-section'>
                     <div className="actions-image-container">
                         {from === "profile" &&
-                        <Link to="/profile/edit">
-                            <EditIcon />
-                        </Link>}
+                            <Link to="/profile/edit">
+                                <EditIcon />
+                            </Link>}
 
                         <Avatar
                             className={styles.large}
@@ -101,77 +102,86 @@ const ProfileComponent = ({ user, from }) => {
                         />
 
                         {from === "profile" &&
-                        <MoreHorizIcon
-                            onClick={handleOpenActionsDialog}
-                        />}
+                            <MoreHorizIcon
+                                onClick={handleOpenActionsDialog}
+                            />}
                     </div>
                     <h1><span>{user?.firstName}</span> {user?.lastName}</h1>
                 </div>
 
-                
+
 
                 <div className="second-section">
                     <p>{user?.about}</p>
                 </div>
 
-                <div className="third-section">
+                {(user?.instagram || user?.facebook || user?.website || user?.twitter) &&
+                    <div className="third-section">
 
-                    <LinkIcon
-                        fontSize="large"
-                    />
-
-
-
-                    <TwitterIcon
-                        fontSize="large"
-                        style={{ color: "#00acee" }}
-                    />
+                        {user?.website &&
+                            <LinkIcon
+                                fontSize="large"
+                            />
+                        }
 
 
 
-                    <InstagramIcon
-                        fontSize="large"
-                        style={{ color: "#C13584" }}
-                    />
+                        {user?.twitter &&
+                            <TwitterIcon
+                                fontSize="large"
+                                style={{ color: "#00acee" }}
+                            />
+                        }
 
 
 
-                    <FacebookIcon
-                        fontSize="large"
-                        style={{ color: "#3b5998" }}
-                    />
+                        {user?.instagram &&
+                            <InstagramIcon
+                                fontSize="large"
+                                style={{ color: "#C13584" }}
+                            />
+                        }
 
 
-                </div>
 
+                        {user?.facebook &&
+                            <FacebookIcon
+                                fontSize="large"
+                                style={{ color: "#3b5998" }}
+                            />
+                        }
+
+
+                    </div>
+                }
             </div>
 
 
             <div className="profile-component-experiences-container">
                 {from === "profile" &&
-                <div className="profile-component-experiences-button-container">
-                    <Button
-                        onClick={handleShowSharedExp}
-                        variant={showSharedExp ? "contained" : "outlined"}
-                        style={showSharedExp ?
-                            { backgroundColor: green[500], color: "white" }
-                            :
-                            { color: green[500] }}
-                    >
-                        Shared
+                    <div className="profile-component-experiences-button-container">
+                        <Button
+                            onClick={handleShowSharedExp}
+                            variant={showSharedExp ? "contained" : "outlined"}
+                            style={showSharedExp ?
+                                { backgroundColor: green[500], color: "white" }
+                                :
+                                { color: green[500] }}
+                        >
+                            Shared
                     </Button>
 
-                    <Button
-                        onClick={handleShowSavedExp}
-                        variant={!showSharedExp ? "contained" : "outlined"}
-                        style={!showSharedExp ?
-                            { backgroundColor: green[500], color: "white" }
-                            :
-                            { color: green[500] }}
-                    >
-                        Saved
+                        <Button
+                            onClick={handleShowSavedExp}
+                            variant={!showSharedExp ? "contained" : "outlined"}
+                            style={!showSharedExp ?
+                                { backgroundColor: green[500], color: "white" }
+                                :
+                                { color: green[500] }}
+                        >
+                            Saved
                     </Button>
-                </div>}
+                    </div>}
 
                 {showSharedExp ?
                     <SharedExperience

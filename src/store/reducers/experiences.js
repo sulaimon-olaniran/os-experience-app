@@ -1,6 +1,7 @@
 import { 
     FETCHING_EXPERIENCES, 
     FETCH_EXPERIENCES,
+    FETCH_EXPERIENCE_FAILED,
     CREATING_EXPERIENCE, 
     CREATE_EXPERIENCE, 
     LIKE_EXPERIENCE, 
@@ -50,6 +51,15 @@ const experiencesReducer = (state = initState, action) => {
             return {
                 ...state,
                 experiences : action.payload,
+                fetchingExperiences : false
+            }
+
+        case FETCH_EXPERIENCE_FAILED:
+            return {
+                ...state,
+                openSnackbar : true,
+                snackbarText : action.payload,
+                snackbarSeverity : 'error',
                 fetchingExperiences : false
             }
 

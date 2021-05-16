@@ -24,9 +24,13 @@ const ActionLoader = () => {
     const styles = useStyles()
     const actionsLoader = useSelector((state) => state.experiences.actionsLoader)
     const updatingAccount = useSelector((state) => state.auth.updatingAccount)
+    const deletingAccount = useSelector((state) => state.auth.deletingAccount)
 
     return (
-        <Backdrop className={styles.backdrop} open={actionsLoader || updatingAccount}>
+        <Backdrop 
+            className={styles.backdrop} 
+            open={actionsLoader || updatingAccount || deletingAccount }
+        >
             <FadeLoader color="white" />
         </Backdrop>
     )

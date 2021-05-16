@@ -31,6 +31,8 @@ const HomePage = () => {
         return data?.category.toLowerCase() === category.toLowerCase()
     }
 
+    const filterdExperience = experiences?.filter(filterExperiences)
+
 
     if (fetchingExperiences) return <SpinnerLoader />
     return (
@@ -72,11 +74,15 @@ const HomePage = () => {
             </div>
 
             {
-                experiences?.filter(filterExperiences).map(experience => {
+                filterdExperience?.length > 0 ? filterdExperience?.map(experience => {
                     return (
                         <ExperienceCard experience={experience} key={experience._id} />
                     )
                 })
+                :
+                <div className ="homepage-no-experience-container">
+                    <h1>No <span>{category}</span> Experience shared yet</h1>
+                </div>
             }
 
         </div>

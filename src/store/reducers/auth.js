@@ -12,7 +12,10 @@ import {
     UPDATE_ACCOUNT_FAIL,
     UPDATING_ACCOUNT,
     UPDATED_ACCOUNT,
-    CLOSE_SNACKBAR
+    CLOSE_SNACKBAR,
+    DELETING_ACCOUNT,
+    DELETED_ACCOUNT,
+    DELETE_ACCOUNT_FAILED
 } from '../../constants/actionTypes'
 
 
@@ -29,7 +32,8 @@ const initState = {
     signInError : null,
     authSnackbar : false,
     authSnackbarText : '',
-    authSnackbarSeverity : ''
+    authSnackbarSeverity : '',
+    deletingAccount : false
 }
 
 
@@ -151,6 +155,36 @@ const authReducer = (state = initState, action) => {
                 user : null,
                 isAuth : false,
                 token: null,
+            }
+            
+        case DELETING_ACCOUNT:
+
+            return {
+                ...state,
+                deletingAccount : true,
+            }
+            
+        case DELETED_ACCOUNT:
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                user : null,
+                isAuth : false,
+                token: null,
+                deletingAccount : false,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'success'
+            }
+            
+        case DELETE_ACCOUNT_FAILED:
+            
+            return {
+                ...state,
+                deletingAccount : false,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'error'
             }
             
         case CLOSE_SNACKBAR:

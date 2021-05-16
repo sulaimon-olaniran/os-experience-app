@@ -16,7 +16,10 @@ import {
     FETCHED_ACCOUNT_FAILED,
     UPDATING_ACCOUNT,
     UPDATED_ACCOUNT,
-    UPDATE_ACCOUNT_FAIL
+    UPDATE_ACCOUNT_FAIL,
+    DELETING_ACCOUNT,
+    DELETED_ACCOUNT,
+    DELETE_ACCOUNT_FAILED
 
 } from '../../constants/actionTypes'
 
@@ -168,12 +171,42 @@ export const updateAccount = (data) => {
     }
 }
 
+export const deleteAccount = (history) => {
+    return (dispatch, getState) => {
+        dispatch({
+            type : DELETING_ACCOUNT
+        })
+        
+
+        const token = getState().auth.token
+        
+
+        axios.delete(`${baseUrl}/delete/user`, { data: null, headers: {"x-auth-token": token } })
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type : DELETED_ACCOUNT,
+                payload : res.data.message
+            })
+            history.push('/')
+        })
+        .catch(error =>{
+            dispatch({
+                type : DELETE_ACCOUNT_FAILED,
+                payload : error.response.data.message
+            })
+        })
+    }
+}
 
 
-export const logoutUser = () => {
+
+export const logoutUser = (history) => {
     return (dispatch, getState) =>{
         dispatch({
             type : LOGGED_OUT
         })
+
+        history.push('/')
     }
 }
