@@ -15,13 +15,20 @@ import {
     CLOSE_SNACKBAR,
     DELETING_ACCOUNT,
     DELETED_ACCOUNT,
-    DELETE_ACCOUNT_FAILED
+    DELETE_ACCOUNT_FAILED,
+    VERIFIED_EMAIL,
+    VERIFYING_EMAIL,
+    VERIFIED_EMAIL_FAILED,
+    SENDING_VERIFICATION_CODE,
+    SEND_VERIFICATION_CODE,
+    SEND_VERIFICATION_CODE_FAILED
 } from '../../constants/actionTypes'
 
 
 const initState = {
     token : localStorage.getItem('token'),
     isAuth : false,
+    actionLoader : false,
     fetchingAccount : true,
     updatingAccount : false,
     updateAccountError : null,
@@ -70,14 +77,15 @@ const authReducer = (state = initState, action) => {
         case UPDATING_ACCOUNT:
             return {
                 ...state,
-                updatingAccount : true
+                actionLoader : true,
+                //updatingAccount : true
             }
 
 
         case UPDATED_ACCOUNT:
             return {
                 ...state,
-                updatingAccount : false,
+                actionLoader : false,
                 user : action.payload,
                 authSnackbar : true,
                 authSnackbarText : "Updated profile successfully",
@@ -88,7 +96,7 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 updateAccountError : action.payload,
-                updatingAccount : false,
+                actionLoader : false,
                 authSnackbar : true,
                 authSnackbarText : "Profile update failed",
                 authSnackbarSeverity : 'error'
@@ -148,6 +156,36 @@ const authReducer = (state = initState, action) => {
                 authSnackbarSeverity : 'error'
             }
             
+        case VERIFYING_EMAIL:
+        case SENDING_VERIFICATION_CODE :
+            
+            return {
+                ...state,
+                actionLoader : true,
+            }
+            
+        case VERIFIED_EMAIL:
+        case SEND_VERIFICATION_CODE:
+        
+            return {
+                ...state,
+                actionLoader : false,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'success'
+            }
+            
+        case VERIFIED_EMAIL_FAILED:
+        case SEND_VERIFICATION_CODE_FAILED:
+        
+            return {
+                ...state,
+                actionLoader : false,
+                authSnackbar : true,
+                authSnackbarText : action.payload,
+                authSnackbarSeverity : 'error'
+            }
+            
         case LOGGED_OUT:
             localStorage.removeItem('token')
             return {
@@ -161,7 +199,8 @@ const authReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                deletingAccount : true,
+                //deletingAccount : true,
+                actionLoader : true,
             }
             
         case DELETED_ACCOUNT:
@@ -171,7 +210,7 @@ const authReducer = (state = initState, action) => {
                 user : null,
                 isAuth : false,
                 token: null,
-                deletingAccount : false,
+                actionLoader : false,
                 authSnackbar : true,
                 authSnackbarText : action.payload,
                 authSnackbarSeverity : 'success'
@@ -181,7 +220,7 @@ const authReducer = (state = initState, action) => {
             
             return {
                 ...state,
-                deletingAccount : false,
+                actionLoader : false,
                 authSnackbar : true,
                 authSnackbarText : action.payload,
                 authSnackbarSeverity : 'error'

@@ -7,7 +7,7 @@ import { green } from '@material-ui/core/colors'
 
 
 import expLogo from '../assets/exp_logo.png'
-import { Button } from '@material-ui/core';
+import { Button } from '@material-ui/core'
 
 
 

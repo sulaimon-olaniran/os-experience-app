@@ -24,6 +24,7 @@ import LogoLoader from './components/loaders/logo_loader/LogoLoader'
 import ExperienceSnackbar from './components/snackbars/ExperienceSnackbar'
 import ActionLoader from './components/loaders/action_loader/ActionLoader'
 import AuthSnackbar from './components/snackbars/AuthSnackbar'
+import VerificationPage from './pages/verification_page/VerificationPage'
 
 
 
@@ -83,6 +84,7 @@ function App() {
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/profile/edit' component={EditProfile} />
             <Route exact path='/user/:id' component={UserPage} />
+            <Route exact path='/user/email/verification' component={VerificationPage} />
 
           </Switch>
 

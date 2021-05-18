@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { Form, Field, withFormik, } from 'formik'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -19,8 +19,9 @@ import { signUpUser } from '../../../store/actions/auth'
 
 
 
-const SignupPage = ({ touched, errors, serverError }) => {
+const SignupPage = ({ touched, errors }) => {
 
+    //console.log(history)
 
     const isAuth = useSelector((state) => state.auth.isAuth)
     const signingUp = useSelector((state) => state.auth.signingUp)
@@ -44,7 +45,7 @@ const SignupPage = ({ touched, errors, serverError }) => {
                     type="text" name="lastName"
                     label="Last Name" id="lastName"
                     variant="outlined"
-                    error={touched.lastName && errors.lasNname ? true : false}
+                    error={touched.lastName && errors.lastName ? true : false}
                     helperText={touched.lastName && errors.lastName ? errors.lastName : null}
                     style={{ width: "90%" }}
                 />
@@ -117,9 +118,9 @@ const FormikSignUpPage = withFormik({
     validationSchema: SignUpValidationSchema,
 
     handleSubmit(values, { props, setStatus, setSubmitting }) {
-        const { signUpUser } = props
-        
-        signUpUser(values)
+        const { signUpUser, history } = props
+       
+        signUpUser(values, history)
 
     }
 })(SignupPage)
@@ -134,12 +135,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUpUser: user => dispatch(signUpUser(user))
+        signUpUser: (user, history) => dispatch(signUpUser(user, history))
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormikSignUpPage)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FormikSignUpPage))
 
 
 

@@ -115,6 +115,18 @@ const ProfileComponent = ({ user, from }) => {
                     <p>{user?.about}</p>
                 </div>
 
+                {
+                    !user?.isVerified &&
+                    <Link to='/user/email/verification'>
+                        <Button
+                            color='secondary'
+                            variant='contained'
+                        >
+                            Please verify your Email
+                    </Button>
+                    </Link>
+                }
+
                 {(user?.instagram || user?.facebook || user?.website || user?.twitter) &&
                     <div className="third-section">
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
 import { Form, Field, withFormik, } from 'formik'
 import TextField from '@material-ui/core/TextField'
@@ -82,9 +82,9 @@ export const FormikSignInPage = withFormik({
     validationSchema: SignInValidationSchema,
 
     handleSubmit(values, { props, setStatus, setSubmitting }) {
-        const { signInUser } = props
+        const { signInUser, history } = props
 
-        signInUser(values)
+        signInUser(values, history)
 
     }
 })(SigninPage)
@@ -102,9 +102,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signInUser: user => dispatch(signInUser(user))
+        signInUser: (user, history) => dispatch(signInUser(user, history))
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormikSignInPage)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FormikSignInPage))

@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ActionLoader = () => {
     const styles = useStyles()
-    const actionsLoader = useSelector((state) => state.experiences.actionsLoader)
-    const updatingAccount = useSelector((state) => state.auth.updatingAccount)
-    const deletingAccount = useSelector((state) => state.auth.deletingAccount)
+    const experienceActionsLoader = useSelector((state) => state.experiences.actionsLoader)
+    const authActionsLoader = useSelector((state) => state.auth.actionLoader)
+    //const deletingAccount = useSelector((state) => state.auth.deletingAccount)
 
     return (
         <Backdrop 
             className={styles.backdrop} 
-            open={actionsLoader || updatingAccount || deletingAccount }
+            open={experienceActionsLoader || authActionsLoader  }
         >
             <FadeLoader color="white" />
         </Backdrop>
