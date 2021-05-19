@@ -52,6 +52,10 @@
                 width: 45%;
             }
 
+            button:disabled{
+                background-color: darkgray !important;
+            }
+
         }
     }
 }

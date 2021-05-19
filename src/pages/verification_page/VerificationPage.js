@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactCodeInput from 'react-verification-code-input'
 import Button from '@material-ui/core/Button'
+import { green } from '@material-ui/core/colors'
 
 
 
@@ -48,7 +49,9 @@ const VerificationPage = ({ history }) => {
                 <div className="verification-page-buttons-container">
                     <Button
                         variant='contained'
+                        style={{ backgroundColor: green[500], color: "white" }}
                         onClick = { () => dispatch(verifyAccountEmail(codeNumber, history))}
+                        disabled={codeNumber === null}
                     >
                         Verify Email
                 </Button>
@@ -58,7 +61,7 @@ const VerificationPage = ({ history }) => {
                         color='primary'
                         onClick = { () => dispatch(sendVerificationCode(setCodeNumber))}
                     >
-                        Resend Code
+                        Send Code
                 </Button>
                 </div>
             </div>

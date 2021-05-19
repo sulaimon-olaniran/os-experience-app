@@ -3,9 +3,6 @@ import { Redirect } from 'react-router-dom'
 import { connect, useSelector } from 'react-redux'
 import { Form, Field, withFormik, } from 'formik'
 import TextField from '@material-ui/core/TextField'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
 import { green } from '@material-ui/core/colors'
 import FileBase from 'react-file-base64'
@@ -14,69 +11,21 @@ import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 
 
 import { CreateExperienceValidationSchema } from '../../components/validation_schema/ValidationSchema'
+import MySelectComponent from './select_component/SelectComponent'
 import { createExperience } from '../../store/actions/experiences'
 
 
 
-
-const MySelectComponent = ({ setFieldValue, errors, touched, values }) => {
-   
-
-    const handleChange = (e) => {
-        setFieldValue("category", e.target.value, true)
-    }
-
-    return (
-
-        <FormControl 
-            variant="outlined" 
-            style={{ width: "100%" }}
-            error={touched.category && errors.category ? true : false}
-        >
-
-            <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
-
-            <Select
-                native
-                onChange={handleChange}
-                label="Category"
-                inputProps={{
-                    name: 'category',
-                    id: 'outlined-age-native-simple',
-                }}
-                value={values.category}
-            >
-                <option aria-label="None" value="" />
-                <option value="Sports">Sports</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Work">Work</option>
-                <option value="Food" >Food</option>
-                <option value="Travels">Nature</option>
-                <option value="Vacation">Vacation</option>
-                <option value="Honeymoon">Honeymoon</option>
-                <option value="Travels">Travels</option>
-                <option value="Emotional">Emotional</option>
-                <option value="Religious">Religious</option>
-                <option value="Educational">Educational</option>
-                <option value="Others">Others</option>
-            </Select>
-
-            {touched.category && errors.category && <small>{errors.category}</small> }
-
-        </FormControl>
-    )
-}
 
 
 
 
 const CreateExperiencePage = ({ setFieldValue, touched, errors, values }) => {
     
-    //console.log(errors)
     
     const handleFileBaseDone = (file) =>{
         const imageName = file.name.substr(0, 20)
-        //setFileName(fName)
+       
         setFieldValue("imageName", imageName)
         setFieldValue("imageUrl", file.base64)
     }
@@ -84,8 +33,10 @@ const CreateExperiencePage = ({ setFieldValue, touched, errors, values }) => {
     
     const isAuth = useSelector((state) => state.auth.isAuth)
 
-    if(!isAuth) return <Redirect to='/signin' />
 
+
+
+    if(!isAuth) return <Redirect to='/signin' />
 
     return (
         <div className="create-experience-page-form-container">
@@ -186,11 +137,11 @@ const FormikCreateExperiencePage = withFormik({
     validationSchema: CreateExperienceValidationSchema,
 
     handleSubmit(values, { props, resetForm }) {
-        //const { category, title, summary, imageUrl } = values
+        
         const { createExperience } = props
 
         createExperience(values, resetForm)
-        //console.log(values)
+        
 
     }
 })(CreateExperiencePage)
@@ -203,6 +154,7 @@ const mapStateToProps = state => {
 }
 
 
+//MADE USE OF CONNECT SO I CAN ACCESS THE REDUX STATE IN FORMIK SUBMIT FUNCTION
 const mapDispatchToProps = (dispatch) =>{
     return{
         createExperience : (data, resetForm) => dispatch(createExperience(data, resetForm)),

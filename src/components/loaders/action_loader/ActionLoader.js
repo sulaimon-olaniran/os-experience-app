@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+//LOADER TO DISPLAY WHEN A USER INNITIATS AN ACTION AND IS AWAITING RESPONSE FROM THE BACKEND
 
 const ActionLoader = () => {
     const styles = useStyles()
     const experienceActionsLoader = useSelector((state) => state.experiences.actionsLoader)
     const authActionsLoader = useSelector((state) => state.auth.actionLoader)
-    //const deletingAccount = useSelector((state) => state.auth.deletingAccount)
+    
 
     return (
         <Backdrop 

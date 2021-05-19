@@ -8,7 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert'
 
 
 
-import { closeSnackbar } from '../../store/actions/experiences'
+import { closeSnackbar } from '../../store/actions/auth'
 
 
 

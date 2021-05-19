@@ -1,5 +1,4 @@
 import { 
-    FETCHING_EXPERIENCES, 
     FETCH_EXPERIENCES,
     FETCH_EXPERIENCE_FAILED,
     CREATING_EXPERIENCE, 
@@ -41,11 +40,6 @@ const initState = {
 const experiencesReducer = (state = initState, action) => {
     switch (action.type) {
 
-        case FETCHING_EXPERIENCES:
-            return {
-                ...state,
-                //fetchingExperiences : true
-            }
 
         case FETCH_EXPERIENCES:
             return {

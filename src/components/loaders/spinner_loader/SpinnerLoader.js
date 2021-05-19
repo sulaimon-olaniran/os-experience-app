@@ -4,6 +4,8 @@ import BarLoader from "react-spinners/BarLoader"
 
 
 
+//LOADER FOR WHEN APP IS FETCHING SPECIFIC DATA FOR EACH PAGE
+
 
 const SpinnerLoader = () => {
     return (

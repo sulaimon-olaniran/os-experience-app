@@ -28,19 +28,20 @@ import { usersUrl } from '../../api'
 
 
 const ExperienceCard = ({ experience }) => {
-    const [optionsDialog, setOptionsDialog] = useState(false)
-    const [shareDialog, setShareDialog] = useState(false)
-    const [createdBy, setCreatedBy] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [optionsDialog, setOptionsDialog] = useState(false) //state of opening and closing options dialog
+    const [shareDialog, setShareDialog] = useState(false)//state for opening dialog to share experience
+    const [createdBy, setCreatedBy] = useState(null) //state to save the the account that created the experience
+    const [loading, setLoading] = useState(true) //loading state whilst fetching experience creator data
 
 
     const dispatch = useDispatch()
 
+    //logged in user account gotten from redux state
     const user = useSelector((state) => state.auth.user)
 
-
+    //fetching creator of the experience profile data
     const handleFetchCreatorDetails = useCallback(() => {
-        const { createdBy } = experience
+        const { createdBy } = experience //user id of the experince creator
 
         axios.get(`${usersUrl}/${createdBy}`)
             .then(res => {
@@ -48,7 +49,7 @@ const ExperienceCard = ({ experience }) => {
                 setLoading(false)
             })
             .catch(error => {
-                console.log(error)
+                
                 setLoading(false)
             })
     }, [experience])
@@ -58,6 +59,8 @@ const ExperienceCard = ({ experience }) => {
         handleFetchCreatorDetails()
 
     }, [handleFetchCreatorDetails])
+
+
 
 
     const openOptionsDialog = () => {
@@ -79,7 +82,7 @@ const ExperienceCard = ({ experience }) => {
     }
 
    
-
+    //reduces the experience summary to a total 30 character
     const reducedSummary = `${experience?.summary.substr(0, 30)} ......................`
 
 
@@ -135,7 +138,9 @@ const ExperienceCard = ({ experience }) => {
                 <p>{reducedSummary}</p>
 
                 <div className="experience-card-details-actions-container">
+
                     <div className="likes-container">
+
                         {
                             experience && experience.likes.includes(user?._id) ?
                                 <LikedIcon
@@ -156,6 +161,7 @@ const ExperienceCard = ({ experience }) => {
                     </div>
 
                     <div className="share-delete-save-container">
+                        
                         <ShareIcon 
                             onClick={openShareDialog}
                         />

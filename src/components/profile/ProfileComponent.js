@@ -46,6 +46,7 @@ const ProfileComponent = ({ user, from }) => {
 
     const experiences = useSelector((state) => state.experiences.experiences)
 
+
     const handleShowSharedExp = () => {
         setShowSharedExp(true)
     }
@@ -64,13 +65,15 @@ const ProfileComponent = ({ user, from }) => {
     }
 
 
-
+    //filter function to return only experiences shared by the logged in user
     const filterOutSharedExperience = (data) => {
         return (
             user?._id === data.createdBy
         )
     }
 
+
+    //filter function to return only experiences saved by the logged in user
     const filterOutSavedExperience = (data) => {
         return (
             user?.savedExperience.includes(data._id)
@@ -170,7 +173,8 @@ const ProfileComponent = ({ user, from }) => {
 
 
             <div className="profile-component-experiences-container">
-                {from === "profile" &&
+
+                {from === "profile" && //ONLY SHOW SAVED EXPERIENCE IF IT'S LOGGED IN USER CHEKCING HIS/HER PROFILE
                     <div className="profile-component-experiences-button-container">
                         <Button
                             onClick={handleShowSharedExp}
@@ -181,7 +185,7 @@ const ProfileComponent = ({ user, from }) => {
                                 { color: green[500] }}
                         >
                             Shared
-                    </Button>
+                        </Button>
 
                         <Button
                             onClick={handleShowSavedExp}
@@ -192,8 +196,9 @@ const ProfileComponent = ({ user, from }) => {
                                 { color: green[500] }}
                         >
                             Saved
-                    </Button>
-                    </div>}
+                        </Button>
+                    </div>
+                }
 
                 {showSharedExp ?
                     <SharedExperience

@@ -7,7 +7,6 @@ import {
     SIGNING_IN,
     SIGNED_IN,
     SIGN_IN_ERROR,
-    FETCHING_ACCOUNT,
     FETCHED_ACCOUNT_FAILED,
     UPDATE_ACCOUNT_FAIL,
     UPDATING_ACCOUNT,
@@ -49,12 +48,6 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
     switch (action.type) {
-        
-        case FETCHING_ACCOUNT:
-            return {
-                ...state,
-                //fetchingAccount : true
-            }
 
 
         case FETCHED_ACCOUNT:
@@ -78,7 +71,6 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 actionLoader : true,
-                //updatingAccount : true
             }
 
 
@@ -135,7 +127,6 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 isAuth : false,
-                //signUpError : action.payload,
                 signingUp : false,
                 token: null,
                 authSnackbar : true,
@@ -148,7 +139,6 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 isAuth : false,
-                //signInError : action.payload,
                 signingIn : false,
                 token: null,
                 authSnackbar : true,
@@ -199,7 +189,6 @@ const authReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                //deletingAccount : true,
                 actionLoader : true,
             }
             

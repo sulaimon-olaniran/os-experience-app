@@ -26,17 +26,26 @@ import {
 
 
 const ShareDialog = ({ open, handleClose, experienceId }) => {
-    const iconSize = 40
+    const iconSize = 40 //size of sharing icons i.e facebook, instagram etc.
+
+    //link that links to the current experience being shared
     const sharedLink = `https://os-experience.netlify.app/experience/${experienceId}`
+
+
+
+
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+
             <div className="experience-share-dialog-container">
+
                 <div className="share-diaglog-button-container">
                     <EmailShareButton url={sharedLink}>
                         <EmailIcon round={true} size={iconSize}/>
                         <p>Share through mail</p>
                     </EmailShareButton>
                 </div>
+
 
                 <div className="share-diaglog-button-container">
 
@@ -47,6 +56,7 @@ const ShareDialog = ({ open, handleClose, experienceId }) => {
 
                 </div>
 
+
                 <div className="share-diaglog-button-container">
 
                     <LinkedinShareButton  url={sharedLink}>
@@ -55,6 +65,7 @@ const ShareDialog = ({ open, handleClose, experienceId }) => {
                     </LinkedinShareButton>
 
                 </div>
+
 
                 <div className="share-diaglog-button-container">
 
@@ -65,6 +76,7 @@ const ShareDialog = ({ open, handleClose, experienceId }) => {
 
                 </div>
 
+
                 <div className="share-diaglog-button-container">
 
                     <TwitterShareButton  url={sharedLink}>
@@ -73,6 +85,7 @@ const ShareDialog = ({ open, handleClose, experienceId }) => {
                     </TwitterShareButton>
 
                 </div>
+
 
                 <div className="share-diaglog-button-container">
 
@@ -83,9 +96,11 @@ const ShareDialog = ({ open, handleClose, experienceId }) => {
 
                 </div>
 
+
                 <div className="share-diaglog-button-container">
                     <Button onClick={handleClose}>Cancel</Button>
                 </div>
+                
             </div>
 
         </Dialog>

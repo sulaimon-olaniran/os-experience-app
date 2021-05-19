@@ -29,7 +29,7 @@ const OptionsDialog = ({ open, handleClose, user, experience, openShare }) => {
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
             <div className="options-dialog-container">
 
-                {user?._id === experience?.createdBy &&
+                {user?._id === experience?.createdBy && //only show the delete button if it's created by the logged in account...one can't delete an experience one didn't create
                     <div className="options-dialog-button-container">
                         <Button
                             onClick={() => dispatch(deleteExperience(experience?._id))}
@@ -38,6 +38,9 @@ const OptionsDialog = ({ open, handleClose, user, experience, openShare }) => {
                         </Button>
                     </div>
                 }
+
+
+
 
                 <Link
                     to={`/experience/${experience?._id}`}
@@ -48,16 +51,21 @@ const OptionsDialog = ({ open, handleClose, user, experience, openShare }) => {
                     </Button>
                 </Link>
 
+
+
                 <div className="options-dialog-button-container">
                     <Button onClick={handleOpenShareDialog}>
                         Share
                     </Button>
                 </div>
 
-                {user?._id !== experience?.createdBy &&
+
+
+
+                {user?._id !== experience?.createdBy && //only show saving experience button if it's not created by logged in account...no neccessary one save the experience one created
 
                     <div className="options-dialog-button-container">
-                        {user?.savedExperience.includes(experience?._id) ?
+                        {user?.savedExperience.includes(experience?._id) ? //if user already saved experience ? unsave it and vice versa..
                             <Button
                                 onClick={() => dispatch(unSaveExperience(experience?._id))}
                             >

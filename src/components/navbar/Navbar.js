@@ -15,7 +15,7 @@ import { Button } from '@material-ui/core'
 
 const Navbar = () => {
 
-    const isAuth = useSelector((state) => state.auth.isAuth)
+    const isAuth = useSelector((state) => state.auth.isAuth) //IF USER IS LOGGED IN OR NOT
     const user = useSelector((state) => state.auth.user)
 
     return (

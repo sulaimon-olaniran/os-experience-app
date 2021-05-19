@@ -27,7 +27,8 @@ import {
     VERIFYING_EMAIL,
     SENDING_VERIFICATION_CODE,
     SEND_VERIFICATION_CODE,
-    SEND_VERIFICATION_CODE_FAILED
+    SEND_VERIFICATION_CODE_FAILED,
+    CLOSE_SNACKBAR
 
 } from '../../constants/actionTypes'
 
@@ -38,13 +39,13 @@ const baseUrl = usersUrl
 
 
 
+//SIGN UP USER INTO THE APPLICATION BY ADDING USER TO THE DATABASE AND SAVING SIGNED UP USER TO REDUX STORE
 
 export const signUpUser = ({ firstName, lastName, email, password, confirmPassword }, history) => {
     return (dispatch, getState) => {
-        //console.log(history)
+        
         dispatch({ type: SIGNING_UP })
 
-        //const reqBody = JSON.stringify({ firstName, lastName, email, password })
         const newUser = {
             firstName,
             lastName,
@@ -64,7 +65,6 @@ export const signUpUser = ({ firstName, lastName, email, password, confirmPasswo
                 history.push('/user/email/verification')
             })
             .catch(error => {
-                //console.log(error.response.data.message)
 
                 dispatch({
                     type: SIGN_UP_ERROR,
@@ -75,6 +75,10 @@ export const signUpUser = ({ firstName, lastName, email, password, confirmPasswo
 
 }
 
+
+
+
+//SIGN IN USER TO THE APPLICATION AND SAVING USER DATA TO REDUX STORE
 
 export const signInUser = ({ email, password }, history) => {
     return (dispatch, getState) => {
@@ -99,7 +103,6 @@ export const signInUser = ({ email, password }, history) => {
             }
         })
         .catch(error => {
-            //console.log(error.response.data.message)
 
             dispatch({
                 type: SIGN_IN_ERROR,
@@ -111,6 +114,10 @@ export const signInUser = ({ email, password }, history) => {
 
 }
 
+
+
+
+//TO CONSTANTLY GET LOGGED IN ACCOUNT TO HAVE USER LOGGED IN,, WOULD BE CALLED IN THE ROOT OF THE APP (APP.JS) SO AS TO FIRE EVERYTIME
 
 export const getAccount = () => {
     return (dispatch, getState) => {
@@ -139,7 +146,7 @@ export const getAccount = () => {
                 })
             })
             .catch(error => {
-                //console.log(error)
+                
                 dispatch({
                     type : FETCHED_ACCOUNT_FAILED
                 })
@@ -150,6 +157,9 @@ export const getAccount = () => {
 
 
 
+
+
+//UPDATES USER DATA IN THE DATABASE
 export const updateAccount = (data) => {
     return (dispatch, getState) => {
         dispatch({ type : UPDATING_ACCOUNT })
@@ -161,7 +171,8 @@ export const updateAccount = (data) => {
         }
 
         const token = getState().auth.token
-        //console.log(data)
+        
+        
         const config = {
             headers: {
                 "content-type": "application/json"
@@ -192,6 +203,10 @@ export const updateAccount = (data) => {
     }
 }
 
+
+
+
+//TO SEND DATA TO THE BACKEND TO VERIFY USER EMAIL
 
 export const verifyAccountEmail = (verificationCode, history) => {
     return (dispatch, getState) => {
@@ -236,6 +251,9 @@ export const verifyAccountEmail = (verificationCode, history) => {
 
 
 
+
+//TO SEND VERIFICATION CODE TO USER'S EMAIL
+
 export const sendVerificationCode = (setCodeNumber) => {
     return (dispatch, getState) => {
 
@@ -279,7 +297,7 @@ export const sendVerificationCode = (setCodeNumber) => {
 
 
 
-
+// TO DELETE USER'S ACCOUNT FROM THE DATABASE
 export const deleteAccount = (history) => {
     return (dispatch, getState) => {
         dispatch({
@@ -313,6 +331,7 @@ export const deleteAccount = (history) => {
 
 
 
+//LOGOUT USER FROM THE APPLICATION
 
 export const logoutUser = (history) => {
     return (dispatch, getState) =>{
@@ -320,6 +339,19 @@ export const logoutUser = (history) => {
             type : LOGGED_OUT
         })
 
-        history.push('/')
+        history.push('/signin')
+    }
+}
+
+
+
+//CLOSE SNACKBAR
+export const closeSnackbar = () => {
+    return(dispatch, getState) => {
+
+        dispatch({
+            type : CLOSE_SNACKBAR
+        })
+
     }
 }

@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const EditProfilePage = ({ errors, touched, serverError, setFieldValue, values }) => {
+    
     const [newImage, setNewImage] = useState(null)
     const styles = useStyles()
 
@@ -188,11 +189,10 @@ const FormikEditProfile = withFormik({
         }
     },
 
-    //validationSchema: SignUpValidationSchema,
+    
 
-    handleSubmit(values, { props, setStatus, setSubmitting }) {
+    handleSubmit(values, { props }) {
         const { updateAccount } = props
-        //const { firstName, lastName, email, password } = values
 
         updateAccount(values)
 

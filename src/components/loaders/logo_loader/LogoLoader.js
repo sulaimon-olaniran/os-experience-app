@@ -6,6 +6,8 @@ import expLogo from '../../assets/exp_logo.png'
 
 
 
+//UNIVERSAL APP LOADER WHEN APP IS INNITIALIZING
+
 const LogoLoader = () => {
     return(
         <div 

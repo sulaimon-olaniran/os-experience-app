@@ -39,14 +39,17 @@ const baseUrl = experiencesUrl
 
 
 
+
+//FETCH ALL EXPERINCE FROM THE SERVER AND SAVE IT TO REDUX STORE
+
 export const getAllExperiences = () => {
     return (dispatch, getState) => {
-        //dispatch({ type: FETCHING_EXPERIENCES })
+        
         console.log("fetching experiences")
 
         axios.get(baseUrl)
             .then(res => {
-                //const allExperiences = [data, ...res.data]
+                
                 dispatch({
                     type: FETCH_EXPERIENCES,
                     payload: res.data
@@ -64,6 +67,10 @@ export const getAllExperiences = () => {
 }
 
 
+
+
+
+//CREATES NEW EXPERIENCE BY SENDING THE EXPERIENCE TO THE SERVER ALONG WITH THE TOKEN
 
 export const createExperience = (data, resetForm) => {
     return (dispatch, getState) => {
@@ -98,6 +105,9 @@ export const createExperience = (data, resetForm) => {
 
 
 
+
+//DELETE EXPERIENCE FROM THE DATABASE
+
 export const deleteExperience = (id) => {
     return (dispatch, getState) => {
 
@@ -124,6 +134,9 @@ export const deleteExperience = (id) => {
 }
 
 
+
+
+//SAVES EXPERIENCE ID TO USER DATA
 
 export const saveExperience = (id) => {
     return (dispatch, getState) => {
@@ -156,6 +169,11 @@ export const saveExperience = (id) => {
 
 
 
+
+
+
+//REMOVE SAVED EXPERIENCE FROM USER'S DATA
+
 export const unSaveExperience = (id) => {
     return (dispatch, getState) => {
 
@@ -186,6 +204,9 @@ export const unSaveExperience = (id) => {
 }
 
 
+
+
+//LIKING A CERTAIN EXPERIENCE
 
 export const likeExperience = (id) => {
     return (dispatch, getState) => {
@@ -227,6 +248,9 @@ export const likeExperience = (id) => {
 
 
 
+
+//UNLIKING EXPERIENCE
+
 export const unLikeExperience = (id) => {
     return (dispatch, getState) => {
 
@@ -267,6 +291,9 @@ export const unLikeExperience = (id) => {
 
 
 
+
+
+//POST A COMMENT ON AN EXPERIENCE
 export const commentOnExperience = (id, comment, clear) => {
     return (dispatch, getState) => {
 
@@ -298,6 +325,10 @@ export const commentOnExperience = (id, comment, clear) => {
 
 
 
+
+
+
+//LIKING A COMMENT POSTED ON AN EXPERIENCE
 
 export const likeComment = (likeCommentData) => {
     return (dispatch, getState) => {
@@ -344,6 +375,8 @@ export const likeComment = (likeCommentData) => {
 
 
 
+
+//UNLIKING A COMMENT POSTED ON AN EXPERIENCE
 export const unLikeComment = (data) => {
     return (dispatch, getState) => {
 
@@ -388,6 +421,9 @@ export const unLikeComment = (data) => {
 
 
 
+
+//DELETE COMMENT IF IT WAS CREATED BY THE LOGGED IN ACCOUNT
+
 export const deleteComment = (data) => {
     return (dispatch, getState) => {
 
@@ -417,6 +453,9 @@ export const deleteComment = (data) => {
 
 
 
+
+
+//CLOSE SNACKBAR
 export const closeSnackbar = () => {
     return(dispatch, getState) => {
         dispatch({
